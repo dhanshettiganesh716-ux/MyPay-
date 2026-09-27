@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MyPay Scan</title>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#f5f5f5;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+
+.header{
+  background:#111;
+  color:white;
+  padding:20px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.container{
+  padding:20px;
+}
+
+#reader{
+  width:100%;
+  max-width:400px;
+  margin:20px auto;
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.info{
+  font-size:16px;
+  color:#555;
+  margin-top:15px;
+}
+
+#result{
+  display:none;
+  background:white;
+  padding:20px;
+  margin:20px auto;
+  max-width:400px;
+  border-radius:15px;
+  word-break:break-word;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  Scan QR
+</div>
+
+<div class="container">
+
+  <div id="reader"></div>
+
+  <div class="info">
+    QR Code camera समोर ठेवा 📷
+  </div>
+
+  <div id="result"></div>
+
+</div>
+
+
+<script>
+
+let scanner = null;
+
+
+function showResult(text){
+
+  const result =
+    document.getElementById("result");
+
+  result.style.display = "block";
+
+  result.innerHTML =
+    "<b>QR Code मिळाला ✅</b><br><br>" +
+    text;
+}
+
+
+function startScanner(){
+
+  scanner =
+    new Html5Qrcode("reader");
+
+
+  const config = {
+
+    fps: 10,
+
+    qrbox: {
+      width: 250,
+      height: 250
+    }
+
+  };
+
+
+  scanner.start(
+
+    {
+      facingMode: "environment"
+    },
+
+    config,
+
+
+    // QR SCAN झाल्यावर
+    function(decodedText){
+
+      console.log(
+        "QR SCANNED:",
+        decodedText
+      );
+
+
+      scanner.stop().catch(function(){});
+
+
+      // UPI QR आहे का?
+      if(
+        decodedText
+          .toLowerCase()
+          .startsWith("upi://pay")
+      ){
+
+        try{
+
+          const upiUrl =
+            new URL(decodedText);
+
+
+          const upiId =
+            upiUrl.searchParams.get("pa")
+            || "";
+
+
+          const name =
+            upiUrl.searchParams.get("pn")
+            || "MyPay User";
+
+
+          const amount =
+            upiUrl.searchParams.get("am")
+            || "";
+
+
+          // Payment page वर जा
+          window.location.href =
+            "payment.html?" +
+            "upi=" +
+            encodeURIComponent(upiId) +
+            "&name=" +
+            encodeURIComponent(name) +
+            "&amount=" +
+            encodeURIComponent(amount);
+
+
+        }catch(error){
+
+          showResult(
+            "QR read झाला पण payment details मिळाल्या नाहीत 😕"
+          );
+
+          console.log(error);
+
+        }
+
+
+      }else{
+
+        showResult(
+          "हा UPI QR नाही 😕<br><br>" +
+          decodedText
+        );
+
+      }
+
+    },
+
+
+    // QR सापडला नाही तर
+    function(errorMessage){
+
+      // काही करू नका
+
+    }
+
+  ).catch(function(error){
+
+    showResult(
+      "Camera सुरू होत नाही 😕<br><br>" +
+      "Camera permission Allow करा."
+    );
+
+    console.log(error);
+
+  });
+
+}
+
+
+startScanner();
+
+</script>
+
+</body>
+</html>

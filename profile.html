@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyPay Profile</title>
 
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f6f8;
+  color:#111;
+  min-height:100vh;
+}
+
+.header{
+  background:#111;
+  color:white;
+  padding:18px;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.profile{
+  background:white;
+  padding:25px 20px;
+  text-align:center;
+  border-bottom:1px solid #eee;
+}
+
+.avatar{
+  width:75px;
+  height:75px;
+  background:#111;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:auto;
+  font-size:28px;
+  font-weight:bold;
+}
+
+.profile h2{
+  margin-top:12px;
+}
+
+.profile p{
+  color:#777;
+  margin-top:5px;
+  font-size:14px;
+}
+
+.section{
+  margin:15px;
+}
+
+.item{
+  background:white;
+  padding:17px;
+  margin-bottom:8px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  box-shadow:0 2px 7px rgba(0,0,0,.05);
+}
+
+.left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.icon{
+  width:40px;
+  height:40px;
+  background:#f1f1f1;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.name{
+  font-size:16px;
+}
+
+.arrow{
+  color:#999;
+  font-size:22px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  background:white;
+  border-top:1px solid #ddd;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav{
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.nav div{
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:#111;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  MyPay Profile
+</div>
+
+<div class="profile">
+
+  <div class="avatar">M</div>
+
+  <h2>MyPay User</h2>
+
+  <p>MyPay account</p>
+
+</div>
+
+<div class="section">
+
+  <div class="item" onclick="alert('Profile editing लवकरच उपलब्ध होईल.')">
+    <div class="left">
+      <div class="icon">👤</div>
+      <div class="name">Edit Profile</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="alert('Bank Accounts feature लवकरच उपलब्ध होईल.')">
+    <div class="left">
+      <div class="icon">🏦</div>
+      <div class="name">Bank Accounts</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="alert('Transaction History लवकरच उपलब्ध होईल.')">
+    <div class="left">
+      <div class="icon">📋</div>
+      <div class="name">Transaction History</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="alert('Security settings लवकरच उपलब्ध होतील.')">
+    <div class="left">
+      <div class="icon">🔐</div>
+      <div class="name">Security</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="alert('Help & Support लवकरच उपलब्ध होईल.')">
+    <div class="left">
+      <div class="icon">❓</div>
+      <div class="name">Help & Support</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+  <div class="item" onclick="alert('MyPay बद्दल')">
+    <div class="left">
+      <div class="icon">ℹ️</div>
+      <div class="name">About MyPay</div>
+    </div>
+    <div class="arrow">›</div>
+  </div>
+
+</div>
+
+<div class="bottom">
+
+  <div class="nav" onclick="location.href='index.html'">
+    <div>⌂</div>
+    Home
+  </div>
+
+  <div class="nav" onclick="alert('QR Scanner लवकरच येईल.')">
+    <div>▣</div>
+    Scan
+  </div>
+
+  <div class="nav" onclick="location.href='ai.html'">
+    <div>✦</div>
+    AI
+  </div>
+
+  <div class="nav active">
+    <div>●</div>
+    Profile
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyPay AI</title>
 
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f6f8;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  background:#111;
+  color:white;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.back{
+  font-size:24px;
+  cursor:pointer;
+}
+
+.header h2{
+  font-size:20px;
+}
+
+.header small{
+  display:block;
+  color:#aaa;
+  margin-top:3px;
+}
+
+.chat{
+  flex:1;
+  overflow-y:auto;
+  padding:18px 14px 90px;
+}
+
+.welcome{
+  text-align:center;
+  margin-top:50px;
+}
+
+.logo{
+  width:65px;
+  height:65px;
+  background:#111;
+  color:white;
+  border-radius:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin:auto;
+}
+
+.welcome h1{
+  margin-top:15px;
+  font-size:24px;
+}
+
+.welcome p{
+  color:#777;
+  margin-top:8px;
+}
+
+.msg{
+  max-width:82%;
+  padding:12px 15px;
+  margin:10px 0;
+  border-radius:17px;
+  line-height:1.5;
+  white-space:pre-wrap;
+}
+
+.user{
+  background:#111;
+  color:white;
+  margin-left:auto;
+  border-bottom-right-radius:5px;
+}
+
+.ai{
+  background:white;
+  color:#222;
+  margin-right:auto;
+  border-bottom-left-radius:5px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  padding:10px;
+  border-top:1px solid #ddd;
+  display:flex;
+  gap:8px;
+}
+
+#input{
+  flex:1;
+  border:1px solid #ddd;
+  border-radius:25px;
+  padding:13px 16px;
+  font-size:16px;
+  outline:none;
+}
+
+#send{
+  width:50px;
+  border:0;
+  border-radius:50%;
+  background:#111;
+  color:white;
+  font-size:20px;
+}
+
+.quick{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px 0;
+}
+
+.quick button{
+  white-space:nowrap;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:20px;
+  padding:9px 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="back" onclick="goBack()">‹</div>
+  <div>
+    <h2>MyPay AI</h2>
+    <small>तुमचा Smart Assistant</small>
+  </div>
+</div>
+
+<div class="chat" id="chat">
+
+  <div class="welcome" id="welcome">
+    <div class="logo">AI</div>
+    <h1>नमस्कार 👋</h1>
+    <p>MyPay AI ला काहीही विचारा.</p>
+
+    <div class="quick">
+      <button onclick="quickAsk('माझे पैसे कसे save करू?')">
+        💰 पैसे save
+      </button>
+
+      <button onclick="quickAsk('माझा mobile recharge कसा करू?')">
+        📱 Recharge
+      </button>
+
+      <button onclick="quickAsk('UPI म्हणजे काय?')">
+        💳 UPI
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom">
+  <input
+    id="input"
+    type="text"
+    placeholder="काहीही विचारा..."
+    onkeydown="if(event.key==='Enter') sendMessage()"
+  >
+
+  <button id="send" onclick="sendMessage()">➤</button>
+</div>
+
+<script>
+
+function goBack(){
+  if(document.referrer){
+    history.back();
+  }else{
+    window.location.href="index.html";
+  }
+}
+
+function addMessage(text,type){
+
+  const chat=document.getElementById("chat");
+
+  const msg=document.createElement("div");
+  msg.className="msg "+type;
+  msg.textContent=text;
+
+  chat.appendChild(msg);
+
+  chat.scrollTop=chat.scrollHeight;
+}
+
+function quickAsk(text){
+
+  document.getElementById("input").value=text;
+  sendMessage();
+
+}
+
+function getDemoAnswer(text){
+
+  const q=text.toLowerCase();
+
+  if(q.includes("save") || q.includes("बचत")){
+    return "पैसे save करण्यासाठी आधी महिन्याचा खर्च लिहा. गरजेचे खर्च वेगळे करा आणि प्रत्येक महिन्याला थोडी रक्कम बाजूला ठेवा. 💰";
+  }
+
+  if(q.includes("upi")){
+    return "UPI म्हणजे Unified Payments Interface. याच्या मदतीने bank account मधून mobile वर पैसे पाठवता आणि receive करता येतात.";
+  }
+
+  if(q.includes("recharge") || q.includes("रिचार्ज")){
+    return "Mobile Recharge करण्यासाठी MyPay मध्ये Mobile Recharge option निवडा, mobile number आणि plan निवडा आणि payment करा.";
+  }
+
+  if(q.includes("insurance") || q.includes("इन्शुरन्स")){
+    return "Insurance म्हणजे आर्थिक संरक्षण. योग्य policy निवडताना coverage, premium, exclusions आणि terms तपासा.";
+  }
+
+  if(q.includes("hello") || q.includes("hi") || q.includes("नमस्कार")){
+    return "नमस्कार! 👋 मी MyPay AI आहे. पैसे, UPI, recharge, bills किंवा सामान्य प्रश्न विचारा.";
+  }
+
+  return "तुमचा प्रश्न समजला 👍\n\nसध्या MyPay AI चा demo mode चालू आहे. Real AI जोडण्यासाठी backend/API जोडावा लागेल.";
+}
+async function sendMessage(){
+
+  const input = document.getElementById("input");
+  const text = input.value.trim();
+
+  if(!text) return;
+
+  const welcome = document.getElementById("welcome");
+
+  if(welcome){
+    welcome.remove();
+  }
+
+  addMessage(text, "user");
+
+  input.value = "";
+
+  addMessage("उत्तर तयार होत आहे...", "ai");
+
+  try {
+
+    const response = await fetch(
+      "https://wkkclpkekfvdujibkqva.supabase.co/functions/v1/mypay-ai",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          message: text
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    const messages = document.querySelectorAll(".msg.ai");
+    const lastMessage = messages[messages.length - 1];
+
+    if(lastMessage){
+      lastMessage.remove();
+    }
+
+    if(!response.ok){
+
+      addMessage(
+        "Sorry 😕 काहीतरी problem आला.\n" +
+        (data.error || "AI response मिळाला नाही."),
+        "ai"
+      );
+
+      return;
+    }
+
+    addMessage(
+      data.answer || "मला उत्तर मिळाले नाही.",
+      "ai"
+    );
+
+  } catch(error){
+
+    const messages = document.querySelectorAll(".msg.ai");
+    const lastMessage = messages[messages.length - 1];
+
+    if(lastMessage){
+      lastMessage.remove();
+    }
+
+    addMessage(
+      "Internet किंवा server connection मध्ये problem आहे. पुन्हा try करा.",
+      "ai"
+    );
+
+    console.error(error);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -6,145 +6,418 @@
 <title>MyPay</title>
 
 <style>
-*{box-sizing:border-box}
+.myQrSection{
+  margin:0 18px 25px;
+  padding:22px;
+  background:#f7f3ff;
+  border-radius:22px;
+  text-align:center;
+}
+
+.myQrTitle{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.myQrText{
+  font-size:14px;
+  color:#777;
+  margin-bottom:18px;
+}
+
+#myQr{
+  width:220px;
+  min-height:220px;
+  margin:auto;
+  background:white;
+  padding:10px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.myUpiId{
+  margin-top:14px;
+  font-size:15px;
+  font-weight:bold;
+}
+.rewardsGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+ padding:0 18px 20px;
+}
+.rechargeGrid{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+ padding:0 18px 20px;
+}
+*{
+ box-sizing:border-box;
+}
 
 body{
  margin:0;
- background:#f5f6f8;
+ background:#f4f2ff;
  font-family:Arial,sans-serif;
- color:#111;
+ color:#15121f;
 }
 
 .app{
  max-width:430px;
- margin:auto;
  min-height:100vh;
- background:white;
- padding-bottom:80px;
+ margin:auto;
+ background:#fff;
+ padding-bottom:90px;
 }
 
+/* HEADER */
+
 header{
- padding:20px;
+ padding:2px 2px 2px;
  display:flex;
- justify-content:space-between;
  align-items:center;
+ justify-content:space-between;
 }
 
 .logo{
- font-size:27px;
+ font-size:28px;
  font-weight:800;
+ color:#5b21b6;
+}
+
+.tagline{
+ font-size:11px;
+ color:#777;
+ margin-top:3px;
 }
 
 .profile{
- width:42px;
- height:42px;
+ width:44px;
+ height:44px;
  border-radius:50%;
- background:#111;
+ background:linear-gradient(135deg,#6d28d9,#9333ea);
  color:white;
  display:flex;
  align-items:center;
  justify-content:center;
+ font-weight:bold;
+ font-size:18px;
+ cursor:pointer;
+}
+.headerSearch{
+  width:165px;
+  height:45px;
+  border:2px solid #e5e1ee;
+  border-radius:5px;
+  background:#f7f5fa;
+  display:flex;
+  align-items:center;
+  padding:0 8px;
+  margin-left:auto;
 }
 
+.headerSearch span{
+  font-size:17px;
+  color:#777;
+  margin-left:4px;
+}
+
+.headerSearch input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:18px;
+  color:#222;
+}
+
+.headerSearch input::placeholder{
+  color:#888;
+}
 .balance{
- margin:0 18px;
- padding:22px;
- border-radius:20px;
- background:#111;
+ margin:8px 18px 16px;
+ padding:14px 16px;
+ border-radius:18px;
  color:white;
+ background:linear-gradient(135deg,#4c1d95,#7c3aed,#a855f7);
+ box-shadow:0 8px 20px rgba(109,40,217,.22);
+
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
 }
 
 .small{
  font-size:13px;
- opacity:.7;
+ opacity:.8;
 }
 
 .money{
  font-size:30px;
- font-weight:bold;
- margin-top:8px;
+ font-weight:800;
+ margin:7px 0;
 }
 
-.mainActions{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- padding:18px;
-}
+/* SCAN */
 
-.mainAction{
- background:#f5f5f5;
- border:0;
+.scanCard{
+ margin:0 18px 12px;
+ padding:12px 14px;
  border-radius:18px;
- padding:17px 5px;
- font-size:13px;
- cursor:pointer;
+ background:#7C4DFF;
+ color:white;
+ box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
 }
 
-.icon{
- font-size:28px;
- margin-bottom:7px;
+.scanIcon{
+ width:44px;
+ height:44px;
+ flex-shrink:0;
+ border-radius:14px;
+ background:linear-gradient(135deg,#7c3aed,#c026d3);
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:24px;
 }
+
+.scanTitle{
+ font-size:18px;
+ font-weight:800;
+ margin:0;
+ flex:1;
+ text-align:left;
+}
+
+.scanButton{
+ width:auto;
+ min-height:42px;
+ padding:0 15px;
+ border:0;
+ border-radius:12px;
+ background:white;
+ color:#6d28d9;
+ font-size:14px;
+ font-weight:800;
+ cursor:pointer;
+ box-shadow:none;
+ white-space:nowrap;
+}
+
+/* RECENT CONTACTS */
 
 .section{
- padding:5px 18px 10px;
+ padding:5px 18px 12px;
  font-size:19px;
- font-weight:bold;
+ font-weight:800;
 }
 
-.services{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- padding:0 18px 18px;
+.recentContacts{
+ display:flex;
+ gap:16px;
+ overflow-x:auto;
+ padding:0 18px 20px;
 }
 
-.service{
- border:1px solid #e7e7e7;
- border-radius:16px;
- padding:15px 5px;
+.contact{
+ min-width:62px;
  text-align:center;
  cursor:pointer;
 }
 
+.contactPhoto{
+ width:54px;
+ height:54px;
+ margin:auto;
+ border-radius:50%;
+ background:linear-gradient(135deg,#7c3aed,#a855f7);
+ color:white;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:20px;
+ font-weight:800;
+}
+
+.contactName{
+ margin-top:7px;
+ font-size:12px;
+ font-weight:600;
+}
+
+/* ADD BUTTON */
+
+.addContact{
+ min-width:62px;
+ text-align:center;
+ cursor:pointer;
+}
+
+.addIcon{
+ width:54px;
+ height:54px;
+ margin:auto;
+ border-radius:50%;
+ border:2px dashed #7c3aed;
+ background:#f3e8ff;
+ color:#6d28d9;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:30px;
+ font-weight:400;
+}
+
+.addName{
+ margin-top:7px;
+ font-size:12px;
+ font-weight:600;
+ color:#6d28d9;
+}
+
+/* MAIN ACTIONS */
+
+.quickGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  padding:0 18px 20px;
+}
+
+.quickAction{
+  border:1px solid #ebe7f5;
+  background:#faf9fc;
+  border-radius:17px;
+  padding:15px 5px;
+  min-height:90px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+.quickIcon{
+ font-size:20px;
+ width:5px;
+ height:5px;
+ margin:0 auto 9px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+.quickTitle{
+ font-size:14px;
+ font-weight:800;
+ color:#15121f;
+}
+
+.quickText{
+ font-size:11px;
+ color:#777;
+ margin-top:4px;
+}/* SERVICES */
+
+.services{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:10px;
+ padding:0 18px 20px;
+}
+.service{
+ border:1px solid #ebe7f5;
+ border-radius:17px;
+ padding:15px 5px;
+ text-align:center;
+ background:white;
+ cursor:pointer;
+}
+
 .serviceIcon{
- font-size:25px;
- margin-bottom:6px;
+ font-size:32px;
+ margin-bottom:7px;
 }
 
 .serviceName{
  font-size:12px;
+ font-weight:600;
 }
 
-.ai{
- margin:0 18px 18px;
- padding:18px;
- border-radius:20px;
- background:#eeeeee;
- cursor:pointer;
-}
+/* KHATA */
 
-.aiTitle{
- font-size:18px;
- font-weight:bold;
-}
-
-.aiText{
- color:#666;
- font-size:13px;
- margin-top:6px;
-}
-
-.more{
+.khata{
  margin:0 18px 20px;
- width:calc(100% - 36px);
- padding:15px;
- border:1px solid #ddd;
- background:white;
- border-radius:15px;
+ padding:16px;
+ border-radius:20px;
+ background:linear-gradient(135deg,#f3e8ff,#ede9fe);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ border:1px solid #e9d5ff;
+}
+
+.khataTitle{
+ font-size:17px;
+ font-weight:800;
+}
+
+.khataText{
+ font-size:12px;
+ color:#666;
+ margin-top:5px;
+}
+
+.khataButton{
+ border:0;
+ background:#6d28d9;
+ color:white;
+ padding:11px 14px;
+ border-radius:12px;
  font-weight:bold;
  cursor:pointer;
 }
+
+/* AI */
+
+.aiCard{
+ margin:0 18px 20px;
+}
+
+/* HELP */
+
+.help{
+ margin:0 18px 20px;
+ padding:17px;
+ border-radius:18px;
+ border:1px solid #eee;
+ display:flex;
+ align-items:center;
+ gap:12px;
+ cursor:pointer;
+}
+
+.helpIcon{
+ font-size:27px;
+}
+
+.helpTitle{
+ font-weight:800;
+}
+
+.helpText{
+ font-size:12px;
+ color:#777;
+ margin-top:3px;
+}
+
+/* BOTTOM NAVIGATION */
 
 .bottom{
  position:fixed;
@@ -153,36 +426,204 @@ header{
  transform:translateX(-50%);
  width:100%;
  max-width:430px;
+ height:72px;
  background:white;
- border-top:1px solid #ddd;
+ border-top:1px solid #e8e5ee;
  display:grid;
  grid-template-columns:repeat(4,1fr);
- padding:9px 0;
+ padding:7px 0 8px;
+ z-index:100;
+ box-shadow:0 -5px 18px rgba(0,0,0,.08);
 }
 
 .bottom button{
  border:0;
  background:white;
- font-size:12px;
+ font-size:11px;
+ color:#666;
+ cursor:pointer;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:2px;
 }
 
 .bottomIcon{
- font-size:21px;
+ font-size:22px;
 }
+
+.bottom .active{
+ color:#6d28d9;
+ font-weight:800;
+}
+
+/* MESSAGE */
 
 #message{
  position:fixed;
  left:50%;
  transform:translateX(-50%);
- bottom:80px;
+ bottom:85px;
  width:90%;
  max-width:390px;
- background:#111;
+ background:#17121f;
  color:white;
  padding:14px;
- border-radius:12px;
+ border-radius:13px;
  text-align:center;
  display:none;
+ z-index:200;
+}
+.qrLogo{
+  width:24px;
+  height:24px;
+  display:grid;
+  grid-template-columns:repeat(2,10px);
+  grid-template-rows:repeat(2,10px);
+  gap:4px;
+}
+
+.qrLogo span{
+  border:3px solid #6d28d9;
+  border-radius:2px;
+}
+.qrMainIcon{
+ width:28px;
+ height:28px;
+ margin:0 auto 7px;
+ display:grid;
+ grid-template-columns:repeat(2,11px);
+ grid-template-rows:repeat(2,11px);
+ gap:5px;
+}
+
+.qrMainIcon span{
+ border:3px solid #6d28d9;
+ border-radius:2px;
+}
+.bottomNav{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-around;
+  background:white;
+  border-top:1px solid #ddd;
+  padding:8px 5px 10px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:1000;
+}
+
+.bottomNav button{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:#555;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.bottomIcon{
+  font-size:24px;
+  margin-bottom:3px;
+}
+
+.scanBottom{
+  position:relative;
+  color:#6d28d9 !important;
+}
+
+.scanCircle{
+  width:62px;
+  height:62px;
+  margin:-30px auto 4px;
+  border-radius:50%;
+  background:#6d28d9;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  border:5px solid white;
+  box-shadow:0 4px 15px rgba(109,40,217,0.35);
+}
+
+.scanBottom span{
+  font-weight:800;
+  font-size:11px;
+}
+.quickGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+  padding:0 18px 20px;
+}
+
+.quickAction{
+  border:0;
+  background:white;
+  border-radius:14px;
+  padding:10px 3px;
+  min-height:90px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:none;
+}
+
+.quickIcon{
+  font-size:23px;
+  width:24px;
+  height:24px;
+  margin:0 auto 7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.quickTitle{
+  font-size:11px;
+  font-weight:800;
+  color:#15121f;
+  line-height:1.2;
+}
+
+.quickText{
+  font-size:9px;
+  color:#777;
+  margin-top:3px;
+  line-height:1.2;
+}
+.qrCenterLogo{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#5b21b6,#9333ea);
+  border:4px solid white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+  box-shadow:0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events:none;
+}
+
+.qrCenterLogoText{
+  color:white;
+  font-size:25px;
+  font-weight:900;
+  font-family:Arial,sans-serif;
+}
+.qrCenterLogoText{
+  color:white;
+  font-size:25px;
+  font-weight:900;
+  font-family:Arial,sans-serif;
 }
 </style>
 </head>
@@ -191,176 +632,641 @@ header{
 
 <div class="app">
 
+
+<!-- HEADER -->
+
 <header>
- <div class="logo">MyPay</div>
- <div class="profile">G</div>
+
+<div>
+<div class="logo">MyPay</div>
+<div class="tagline">Simple • Fast • Trusted</div>
+</div>
+<div class="headerSearch">
+  <span>⌕</span>
+  <input
+    type="text"
+    placeholder="Search..."
+    aria-label="Search">
+</div>
+<div style="display:flex;align-items:center;gap:8px;">
+
+<!-- QR -->
+<button
+  onclick="window.location.href='receive.html'"
+  aria-label="My QR"
+  style="border:0;background:#f3e8ff;color:#6d28d9;border-radius:12px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+
+  <svg width="25" height="25" viewBox="0 0 24 24"
+       fill="none"
+       stroke="#6d28d9"
+       stroke-width="2.2"
+       stroke-linecap="round"
+       stroke-linejoin="round">
+
+    <rect x="3" y="3" width="7" height="7"></rect>
+    <rect x="14" y="3" width="7" height="7"></rect>
+    <rect x="3" y="14" width="7" height="7"></rect>
+
+    <path d="M14 14h3v3h-3z"></path>
+    <path d="M20 14v3"></path>
+    <path d="M17 20h4"></path>
+    <path d="M14 20h1"></path>
+
+  </svg>
+
+</button>
+
+<!-- NOTIFICATION -->
+<button
+  onclick="show('Notifications लवकरच उपलब्ध होतील 🔔')"
+  aria-label="Notifications"
+  class="notificationButton">
+  🔔
+</button>
+
+<!-- PROFILE -->
+<div class="profile"
+onclick="window.location.href='profile.html'">
+G
+</div>
+
+</div>
+
 </header>
 
-<div class="balance">
- <div class="small">MyPay Balance</div>
- <div class="money">₹0.00</div>
- <div class="small">Demo account</div>
+
+
+<!-- QUICK PAYMENT OPTIONS -->
+
+<div class="quickGrid">
+
+  <button class="quickAction"
+  onclick="window.location.href='send.html'">
+    <div class="quickIcon">📱</div>
+    <div class="quickTitle">To Mobile</div>
+    <div class="quickText">मोबाइल नंबरवर</div>
+  </button>
+
+  <button class="quickAction"
+  onclick="window.location.href='send.html'">
+    <div class="quickIcon">🏦</div>
+    <div class="quickTitle">To Bank / UPI</div>
+    <div class="quickText">बँक खात्यावर</div>
+  </button>
+
+  <button class="quickAction"
+  onclick="window.location.href='send.html'">
+    <div class="quickIcon">🔄</div>
+    <div class="quickTitle">MyPay Wallet</div>
+    <div class="quickText">स्वतःच्या खात्यात</div>
+  </button>
+
+  <button class="quickAction"
+  onclick="checkBalance()">
+    <div class="quickIcon">💳</div>
+    <div class="quickTitle">Check Balance</div>
+    <div class="quickText">बॅलन्स तपासा</div>
+  </button>
+
+</div>
+<!-- SEND / RECEIVE -->
+
+<!-- QUICK PAYMENT OPTIONS -->
+
+
+<div class="section">
+Recent Contacts
 </div>
 
-<!-- MAIN -->
+<div class="recentContacts">
 
-<div class="mainActions">
+<div class="contact"
+onclick="window.location.href='send.html?upi=ramesh@upi'">
 
-<button class="mainAction" onclick="show('पैसे पाठवण्याचा पर्याय')">
- <div class="icon">📤</div>
- पैसे पाठवा
-</button>
+<div class="contactPhoto">
+R
+</div>
 
-<button class="mainAction" onclick="show('पैसे घेण्याचा पर्याय')">
- <div class="icon">📥</div>
- पैसे घ्या
-</button>
-
-<button class="mainAction" onclick="show('QR Scanner पुढे जोडू')">
- <div class="icon">▣</div>
- QR Scan
-</button>
+<div class="contactName">
+Ramesh
+</div>
 
 </div>
 
 
+<div class="contact"
+onclick="window.location.href='send.html?upi=suresh@upi'">
+
+<div class="contactPhoto">
+S
+</div>
+
+<div class="contactName">
+Suresh
+</div>
+
+</div>
+
+
+<div class="contact"
+onclick="window.location.href='send.html?upi=amit@upi'">
+
+<div class="contactPhoto">
+A
+</div>
+
+<div class="contactName">
+Amit
+</div>
+
+</div>
+
+
+<div class="contact"
+onclick="window.location.href='send.html?upi=priya@upi'">
+
+<div class="contactPhoto">
+P
+</div>
+
+<div class="contactName">
+Priya
+</div>
+
+</div>
+
+
+<div class="addContact"
+onclick="show('फोनबुकमधून व्यक्ती शोधा')">
+
+<div class="addIcon">
++
+</div>
+
+<div class="addName">
+Add
+</div>
+
+</div>
+
+</div>
 <!-- RECHARGE -->
 
-<div class="section">Recharge & Bills</div>
-
-<div class="services">
-
-<div class="service" onclick="show('Mobile Recharge')">
- <div class="serviceIcon">📱</div>
- <div class="serviceName">Mobile</div>
+<div class="section">
+Recharge & Bills
 </div>
 
-<div class="service" onclick="show('Electricity Bill')">
- <div class="serviceIcon">⚡</div>
- <div class="serviceName">Electricity</div>
+<div class="rechargeGrid">
+  <div class="service"
+  onclick="window.location.href='mobile.html'">
+    <div class="serviceIcon">📱</div>
+    <div class="serviceName">Mobile</div>
+  </div>
+
+  <div class="service"
+  onclick="window.location.href='electricity.html'">
+    <div class="serviceIcon">⚡</div>
+    <div class="serviceName">Electricity</div>
+  </div>
+
+  <div class="service"
+  onclick="window.location.href='dth.html'">
+    <div class="serviceIcon">📺</div>
+    <div class="serviceName">DTH</div>
+  </div>
+
+  <div class="service"
+  onclick="show('LPG Gas Booking लवकरच उपलब्ध होईल')">
+    <div class="serviceIcon">🛢️</div>
+    <div class="serviceName">LPG Gas</div>
+  </div>
+
+  <div class="service"
+  onclick="show('FASTag Recharge लवकरच उपलब्ध होईल')">
+    <div class="serviceIcon">🚗</div>
+    <div class="serviceName">FASTag</div>
+  </div>
+
+  <div class="service"
+  onclick="show('Water Bill लवकरच उपलब्ध होईल')">
+    <div class="serviceIcon">💧</div>
+    <div class="serviceName">Water Bill</div>
+  </div>
+
+  <div class="service"
+  onclick="show('Broadband Bill लवकरच उपलब्ध होईल')">
+    <div class="serviceIcon">🌐</div>
+    <div class="serviceName">Broadband</div>
+  </div>
+
+  <div class="service"
+  onclick="window.location.href='creditcard.html'">
+    <div class="serviceIcon">💳</div>
+    <div class="serviceName">Credit Card</div>
+  </div>
+
+</div>
+<!-- AUTO-PAY & INVESTMENTS -->
+
+<div class="section">
+Auto-Pay & Investments
 </div>
 
-<div class="service" onclick="show('DTH Recharge')">
- <div class="serviceIcon">📺</div>
- <div class="serviceName">DTH</div>
+<div class="rewardsGrid">
+
+  <div class="service"
+  onclick="show('Auto-Pay लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🔄
+    </div>
+
+    <div class="serviceName">
+      Auto-Pay
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('Mutual Fund SIP लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      📈
+    </div>
+
+    <div class="serviceName">
+      Mutual Funds
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('OTT Subscriptions लवकरच उपलब्ध होतील')">
+
+    <div class="serviceIcon">
+      🍿
+    </div>
+
+    <div class="serviceName">
+      Subscriptions
+    </div>
+
+  </div>
+
+</div>
+
+<!-- OFFERS & REWARDS -->
+
+<div class="section">
+Offers & Rewards
+</div>
+
+<div class="rewardsGrid">
+
+  <div class="service"
+  onclick="show('Scratch Card & Cashback लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🎁
+    </div>
+
+    <div class="serviceName">
+      Scratch Cards
+    </div>
+
+  </div>
+
+
+  <div class="service"
+  onclick="show('Refer & Earn लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      👥
+    </div>
+
+    <div class="serviceName">
+      Refer & Earn
+    </div>
+
+  </div>
+
+
+  <div class="service"
+  onclick="show('Rewards History लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🏆
+    </div>
+
+    <div class="serviceName">
+      Rewards History
+    </div>
+
+  </div>
+
+</div>
+<!-- VOICE ALERT & MORE SERVICES -->
+
+<div class="section">
+Voice Alert & More
+</div>
+
+<div class="rewardsGrid">
+
+  <div class="service"
+  onclick="toggleVoiceAlert()">
+
+    <div class="serviceIcon">
+      🔊
+    </div>
+
+    <div class="serviceName" id="voiceAlertText">
+      Voice Alert ON
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('Split Bill लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      👥
+    </div>
+
+    <div class="serviceName">
+      Split Bill
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('Gold Savings लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🪙
+    </div>
+
+    <div class="serviceName">
+      Gold Savings
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FINANCIAL SERVICES -->
+
+<div class="section">
+Financial Services
+</div>
+
+<div class="rewardsGrid">
+
+  <div class="service"
+  onclick="show('Gold Loan लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🪙
+    </div>
+
+    <div class="serviceName">
+      Gold Loan
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('Personal Loan लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      💰
+    </div>
+
+    <div class="serviceName">
+      Personal Loan
+    </div>
+
+  </div>
+
+  <div class="service"
+  onclick="show('Insurance लवकरच उपलब्ध होईल')">
+
+    <div class="serviceIcon">
+      🛡️
+    </div>
+
+    <div class="serviceName">
+      Insurance
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MY PAY KHATA -->
+
+<div class="khata">
+
+<div>
+
+<div class="khataTitle">
+📒 MyPay Khata
+</div>
+
+<div class="khataText">
+उधारी नोंद आणि व्यवहाराची माहिती
 </div>
 
 </div>
 
-
-<!-- FINANCE -->
-
-<div class="section">Finance</div>
-
-<div class="services">
-
-<div class="service" onclick="show('Insurance')">
- <div class="serviceIcon">🛡️</div>
- <div class="serviceName">Insurance</div>
-</div>
-
-<div class="service" onclick="show('Credit Card')">
- <div class="serviceIcon">💳</div>
- <div class="serviceName">Credit Card</div>
-</div>
-
-<div class="service" onclick="show('Investment')">
- <div class="serviceIcon">📈</div>
- <div class="serviceName">Investment</div>
-</div>
-
-</div>
-
-
-<!-- AI -->
-
-<div class="section">तुमचा AI Assistant</div>
-
-<div class="ai" onclick="ai()">
-
-<div class="aiTitle">🤖 MyPay AI</div>
-
-<div class="aiText">
-पैसे, खर्च, बिल किंवा saving बद्दल काहीही विचारा.
-<button id="send" onclick="sendMessage()">➤</button>
-</div>
-
-</div>
-
-
-<button class="more" onclick="allServices()">
-सगळ्या सेवा पहा →
+<button class="khataButton"
+onclick="show('MyPay Khata लवकरच उपलब्ध होईल')">
+Open
 </button>
 
+</div>
 
-<!-- BOTTOM -->
+<!-- HELP / SUPPORT -->
 
-<div class="bottom">
+<div class="help"
+onclick="show('Help & WhatsApp Support लवकरच उपलब्ध होईल')">
 
-<button onclick="home()">
-<div class="bottomIcon">🏠</div>
-Home
-</button>
+  <div class="helpIcon">
+    🆘
+  </div>
 
-<button onclick="show('QR Scanner पुढे जोडू')">
-<div class="bottomIcon">▣</div>
-Scan
-</button>
+  <div>
 
-<button onclick="ai()">
-<div class="bottomIcon">🤖</div>
-AI
-</button>
+    <div class="helpTitle">
+      मदत / Help
+    </div>
 
-<button onclick="show('Profile & Security')">
-<div class="bottomIcon">👤</div>
-Profile
-</button>
+    <div class="helpText">
+      Payment problem असल्यास आम्हाला contact करा.
+    </div>
+
+  </div>
 
 </div>
 
+
+<!-- MY QR -->
+
+<div class="myQrSection">
+
+  <div class="myQrTitle">
+    My QR
+  </div>
+
+  <div class="myQrText">
+    QR Scan करून मला पैसे पाठवा
+  </div>
+
+<div style="position:relative;width:220px;height:220px;margin:auto;">
+
+  <div id="myQr"></div>
+
+  </div>
+
 </div>
 
-<div id="message"></div>
+  <div class="myUpiId">
+    mypayuser@upi
+  </div>
 
+</div>
+<!-- BOTTOM NAVIGATION -->
+
+<div class="bottomNav">
+ 
+ <button onclick="window.location.href='index.html'">
+  <div class="bottomIcon">🏠</div>
+  Home
+ </button>
+ 
+ <button onclick="window.location.href='history.html'">
+  <div class="bottomIcon">🕒</div>
+  History
+ </button>
+ 
+ <button class="scanBottom" onclick="window.location.href='scan.html'">
+<div class="scanCircle">
+  <svg width="30" height="30" viewBox="0 0 24 24"
+       fill="none" stroke="white" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round">
+
+    <path d="M4 8V5a1 1 0 0 1 1-1h3"/>
+    <path d="M16 4h3a1 1 0 0 1 1 1v3"/>
+    <path d="M20 16v3a1 1 0 0 1-1 1h-3"/>
+    <path d="M8 20H5a1 1 0 0 1-1-1v-3"/>
+
+    <rect x="8" y="8" width="8" height="8" rx="1"/>
+    <path d="M10 10h4v4h-4z"/>
+
+  </svg>
+</div>
+  <span>Scan QR</span>
+ </button>
+ 
+ <button onclick="window.location.href='ai.html'">
+  <div class="bottomIcon">🤖</div>
+  AI
+ </button>
+ 
+ <button onclick="window.location.href='profile.html'">
+  <div class="bottomIcon">👤</div>
+  Profile
+ </button>
+ 
+</div>
+</div>
 
 <script>
-
 function show(text){
 
-let m=document.getElementById("message");
+  const message =
+    document.getElementById("message");
 
-m.innerText=text;
-m.style.display="block";
+  message.innerText = text;
+  message.style.display = "block";
 
-setTimeout(()=>{
-m.style.display="none";
-},2200);
-
-}
-
-function ai(){
-
-show("🤖 नमस्कार! MyPay AI Assistant लवकरच जोडला जाईल.");
+  setTimeout(function(){
+    message.style.display = "none";
+  },2200);
 
 }
 
-function allServices(){
 
-show("सर्व Recharge, Bills आणि Finance services.");
+function checkBalance(){
+
+  const pin = prompt("तुमचा 4-digit PIN टाका:");
+
+  if(pin === null){
+    return;
+  }
+
+  if(pin === "1234"){
+
+    show("Balance पाहण्यासाठी PIN योग्य आहे ✅");
+
+  }else{
+
+    show("PIN चुकीचा आहे ❌");
+
+  }
 
 }
+function toggleVoiceAlert(){
 
-function home(){
+  document.getElementById("voiceAlertText").innerText =
+    "Voice Alert ON";
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+  show("Voice Alert सुरू आहे 🔊");
 
+  if ("speechSynthesis" in window) {
+
+    window.speechSynthesis.cancel();
+
+    const speech =
+      new SpeechSynthesisUtterance(
+        "MyPay Voice Alert सुरू आहे"
+      );
+
+    speech.lang = "mr-IN";
+    speech.rate = 0.9;
+    speech.volume = 1;
+    speech.pitch = 1;
+
+    window.speechSynthesis.speak(speech);
+
+  } else {
+
+    show("या browser मध्ये Voice Alert support नाही ❌");
+
+  }
 }
+// MY QR
 
+const myUpiId = "ganesh123@oksbi";
+
+const qrScript = document.createElement("script");
+qrScript.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+
+qrScript.onload = function(){
+
+  new QRCode(document.getElementById("myQr"), {
+    text: "upi://pay?pa=" + myUpiId + "&pn=MyPay",
+    width: 200,
+    height: 200,
+    colorDark: "#111111",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+};
+
+document.head.appendChild(qrScript);
 </script>
 
 </body>
-</html>
+     </html>

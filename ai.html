@@ -131,7 +131,15 @@ body{
   color:white;
   font-size:20px;
 }
-
+#mic{
+  width:50px;
+  border:0;
+  border-radius:50%;
+  background:#6d28d9;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
 .quick{
   display:flex;
   gap:8px;
@@ -178,6 +186,17 @@ body{
       <button onclick="quickAsk('UPI म्हणजे काय?')">
         💳 UPI
       </button>
+      <button onclick="quickAsk('या महिन्यात किती खर्च झाला?')">
+  📊 महिन्याचा खर्च
+</button>
+
+<button onclick="quickAsk('उधारी कोणाची बाकी आहे?')">
+  📒 उधारी बाकी
+</button>
+
+<button onclick="quickAsk('लाइट बिल कसे भरायचे?')">
+  ⚡ लाइट बिल
+</button>
     </div>
   </div>
 
@@ -190,8 +209,9 @@ body{
     placeholder="काहीही विचारा..."
     onkeydown="if(event.key==='Enter') sendMessage()"
   >
-
+<button id="mic" onclick="startVoice()">🎤</button>
   <button id="send" onclick="sendMessage()">➤</button>
+
 </div>
 
 <script>
